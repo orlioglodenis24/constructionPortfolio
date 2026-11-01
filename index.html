@@ -378,6 +378,71 @@
     /* ─── SCROLL REVEAL ─────────────────────────────────────────── */
     .reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ─── GALLERY ─────────────────────────────────────────────── */
+    .gallery { background: var(--light); }
+    .gallery-header { text-align: center; margin-bottom: 48px; }
+    .gallery-header .section-sub { margin: 0 auto; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 12px; overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #ddd;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: "00e";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: #fff;
+      background: rgba(244,124,32,0);
+      transition: background .3s;
+    }
+    .gallery-item:hover::after { background: rgba(244,124,32,.35); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.92);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 88vh;
+      border-radius: 8px; object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: none; border: none; line-height: 1;
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: rgba(255,255,255,.1); border: none;
+      padding: 14px 18px; border-radius: 8px; transition: background .2s;
+    }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(244,124,32,.5); }
+
   </style>
 </head>
 <body>
@@ -391,6 +456,7 @@
     </a>
     <ul class="nav-links" id="navLinks">
       <li><a href="#services">Leistungen</a></li>
+      <li><a href="#gallery">Galerie</a></li>
       <li><a href="#about">Über mich</a></li>
       <li><a href="#contact">Kontakt</a></li>
       <li><a href="#contact" class="nav-cta"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
@@ -509,6 +575,33 @@
     </div>
   </div>
 </section>>
+
+<!-- ═══ GALLERY ══════════════════════════════════════════════════ -->
+<section class="gallery" id="gallery">
+  <div class="section-inner">
+    <div class="gallery-header reveal">
+      <div class="section-tag">Referenzen</div>
+      <h2 class="section-title">Unsere <span style="color:var(--orange)">Arbeit</span> — Ihr Ergebnis</h2>
+      <p class="section-sub">Jedes Projekt ein Beweis handwerklicher Präzision. Schauen Sie sich unsere abgeschlossenen Gipskartonarbeiten an.</p>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item reveal"><img src="img/IMG_6295.JPG" alt="Gipskarton Arbeit 1" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6296.JPG" alt="Gipskarton Arbeit 2" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6297.JPG" alt="Gipskarton Arbeit 3" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6313.JPG" alt="Trockenbau Decke" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6314.JPG" alt="Trockenbau Wand" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6315.JPG" alt="Gipskarton Detail" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6316.JPG" alt="Trockenbau Projekt" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6317.JPG" alt="Gipskarton Decke" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6318.JPG" alt="Trockenbau Detail" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6319.JPG" alt="Gipskarton Wand" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/IMG_6320.JPG" alt="Trockenbau Fertig" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/2026-11-01 20.13.17.jpg" alt="Projekt Vorher" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/2026-11-01 20.15.20.jpg" alt="Projekt Nachher" loading="lazy" /></div>
+      <div class="gallery-item reveal"><img src="img/2026-11-01 20.15.31.jpg" alt="Fertigstellung" loading="lazy" /></div>
+    </div>
+  </div>
+</section>
 
 <!-- ═══ WHY ME ════════════════════════════════════════════════════ -->
 <section class="why" id="about">
@@ -674,6 +767,15 @@
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
+
+<!-- ═══ LIGHTBOX ════════════════════════════════════════════════ -->
+<div class="lightbox" id="lightbox">
+  <button class="lightbox-close" id="lbClose">&#x2715;</button>
+  <button class="lightbox-prev" id="lbPrev">&#8592;</button>
+  <img id="lbImg" src="" alt="Galerie" />
+  <button class="lightbox-next" id="lbNext">&#8594;</button>
+</div>
+
 <!-- ═══ SCRIPTS ═══════════════════════════════════════════════════ -->
 <script>
   /* ── Hamburger ── */
@@ -722,7 +824,72 @@
         p  { color:#666; font-size:.9rem; margin-bottom:24px; }
         img { width:280px; height:280px; }
         .url { margin-top:12px; font-size:.75rem; color:#999; }
-      </style></head><body>
+    
+    /* ─── GALLERY ─────────────────────────────────────────────── */
+    .gallery { background: var(--light); }
+    .gallery-header { text-align: center; margin-bottom: 48px; }
+    .gallery-header .section-sub { margin: 0 auto; }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .gallery-item {
+      border-radius: 12px; overflow: hidden;
+      aspect-ratio: 4/3;
+      background: #ddd;
+      cursor: pointer;
+      position: relative;
+    }
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+      display: block;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-item::after {
+      content: "00e";
+      font-family: "Font Awesome 6 Free";
+      font-weight: 900;
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: #fff;
+      background: rgba(244,124,32,0);
+      transition: background .3s;
+    }
+    .gallery-item:hover::after { background: rgba(244,124,32,.35); }
+
+    /* Lightbox */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,.92);
+      align-items: center; justify-content: center;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox img {
+      max-width: 92vw; max-height: 88vh;
+      border-radius: 8px; object-fit: contain;
+      box-shadow: 0 8px 40px rgba(0,0,0,.5);
+    }
+    .lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: none; border: none; line-height: 1;
+    }
+    .lightbox-prev, .lightbox-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      color: #fff; font-size: 2rem; cursor: pointer;
+      background: rgba(255,255,255,.1); border: none;
+      padding: 14px 18px; border-radius: 8px; transition: background .2s;
+    }
+    .lightbox-prev { left: 16px; }
+    .lightbox-next { right: 16px; }
+    .lightbox-prev:hover, .lightbox-next:hover { background: rgba(244,124,32,.5); }
+
+  </style></head><body>
       <h2>Grigoriy Uzun – Trockenbau</h2>
       <p>Scannen Sie den QR-Code um die Website zu öffnen</p>
       <img src="${canvas.toDataURL('image/png')}" />
@@ -733,6 +900,38 @@
     win.focus();
     win.print();
   }
+
+
+  /* ── Lightbox ── */
+  const galleryItems = document.querySelectorAll('.gallery-item img');
+  const lightbox = document.getElementById('lightbox');
+  const lbImg    = document.getElementById('lbImg');
+  let currentIdx = 0;
+
+  function openLightbox(idx) {
+    currentIdx = idx;
+    lbImg.src = galleryItems[idx].src;
+    lightbox.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox() {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  function showNext() { currentIdx = (currentIdx + 1) % galleryItems.length; lbImg.src = galleryItems[currentIdx].src; }
+  function showPrev() { currentIdx = (currentIdx - 1 + galleryItems.length) % galleryItems.length; lbImg.src = galleryItems[currentIdx].src; }
+
+  galleryItems.forEach((img, i) => img.parentElement.addEventListener('click', () => openLightbox(i)));
+  document.getElementById('lbClose').addEventListener('click', closeLightbox);
+  document.getElementById('lbNext').addEventListener('click', showNext);
+  document.getElementById('lbPrev').addEventListener('click', showPrev);
+  lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!lightbox.classList.contains('open')) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowRight') showNext();
+    if (e.key === 'ArrowLeft') showPrev();
+  });
 
   /* ── Scroll Reveal ── */
   const observer = new IntersectionObserver((entries) => {
