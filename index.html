@@ -284,6 +284,27 @@
     .cert-item h5 { color: #fff; font-size: .95rem; margin-bottom: 2px; }
     .cert-item p { color: #6b7280; font-size: .8rem; }
 
+
+    /* ─── LANGUAGE BADGES ───────────────────────────────────────── */
+    .lang-badges {
+      display: flex; flex-wrap: wrap; gap: 10px; margin-top: 28px;
+    }
+    .lang-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,.07);
+      border: 1px solid rgba(244,124,32,.3);
+      color: #e0e0e0; font-size: .88rem; font-weight: 500;
+      padding: 8px 16px; border-radius: 50px;
+      transition: all .25s;
+    }
+    .lang-badge:hover {
+      background: rgba(244,124,32,.15);
+      border-color: var(--orange);
+      color: #fff;
+      transform: translateY(-2px);
+    }
+    .lang-flag { font-size: 1.2rem; }
+
     /* ─── CONTACT ───────────────────────────────────────────────── */
     .contact { background: var(--white); }
     .contact-grid {
@@ -640,6 +661,15 @@
               <p>Beratung auf Deutsch, Englisch & Russisch — für alle Kunden erreichbar.</p>
             </div>
           </div>
+        </div>
+
+        <!-- Language Badges -->
+        <div class="lang-badges reveal">
+          <span class="lang-badge"><span class="lang-flag">🇩🇪</span> Deutsch</span>
+          <span class="lang-badge"><span class="lang-flag">🇷🇺</span> Русский</span>
+          <span class="lang-badge"><span class="lang-flag">🇺🇦</span> Українська</span>
+          <span class="lang-badge"><span class="lang-flag">🇹🇷</span> Türkçe</span>
+          <span class="lang-badge"><span class="lang-flag">🇭🇷</span> Hrvatski</span>
         </div>
       </div>
       <div class="why-visual reveal">
